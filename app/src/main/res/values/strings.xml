@@ -6,4 +6,10 @@
     <string name="Category4">Category 4</string>
     <string name="Category5">Category 5</string>
     <string name="Category6">Category 6</string>
+
+    <string name="NameHintRecipe">Name of recipe</string>
+    <string name="IngredientsHintRecipe">Ingredients</string>
+    <string name="InstructionsHintRecipe">Instructions</string>
+    <string name="SaveButton">Save</string>
+    <string name="RecipeCategories">Recipe Categories</string>
 </resources>

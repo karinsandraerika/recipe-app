@@ -7,4 +7,9 @@
     <string name="Category4">Kategori 4</string>
     <string name="Category5">Kategori 5</string>
     <string name="Category6">Kategori 6</string>
+    <string name="NameHintRecipe">Namn på recept</string>
+    <string name="IngredientsHintRecipe">Ingredienser</string>
+    <string name="InstructionsHintRecipe">Instruktioner</string>
+    <string name="SaveButton">Spara</string>
+    <string name="RecipeCategories">Recept kategorier</string>
 </resources>

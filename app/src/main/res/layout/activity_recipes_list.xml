@@ -24,6 +24,7 @@
         android:scaleType="fitCenter"
         android:clickable="true"
         android:focusable="true"
+        android:backgroundTint="#9fb098"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add" />
