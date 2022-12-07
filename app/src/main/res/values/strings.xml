@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RecipeApp</string>
+    <string name="Category1">Category 1</string>
+    <string name="Category2">Category 2</string>
+    <string name="Category3">Category 3</string>
+    <string name="Category4">Category 4</string>
+    <string name="Category5">Category 5</string>
+    <string name="Category6">Category 6</string>
 </resources>
