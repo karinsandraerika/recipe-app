@@ -8,7 +8,7 @@ public interface Repository {
     ArrayList<RecipeListItem> filterByCategory(Category category);
     // Get a recipe by the id.
     Recipe findRecipeById(int id);
-    // Save a recipe to the database. Returns -1 if unsuccessful else returns the id.
-    int saveRecipe(Recipe recipe);
+    // Save a recipe to the database. Returns true if successful else returns false.
+    boolean saveRecipe(Recipe recipe);
 
 }

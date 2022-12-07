@@ -45,8 +45,8 @@ public class StubRepo implements Repository{
     }
 
     @Override
-    public int saveRecipe(Recipe recipe) {
+    public boolean saveRecipe(Recipe recipe) {
         recipes.add(recipe);
-        return recipe.getId();
+        return true;
     }
 }
