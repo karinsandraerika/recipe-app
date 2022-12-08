@@ -26,6 +26,7 @@ public class Recipe {
         return id;
     }
 
+    //Ta bort?
     public Recipe setId(int id) {
         this.id = id;
         return this;
