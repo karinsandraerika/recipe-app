@@ -31,8 +31,11 @@ public class SqliteRepository implements Repository {
         SQLiteDatabase db = sqlite.getReadableDatabase();
         ArrayList<RecipeListItem> listItems = new ArrayList<>();
         // TODO All column names are db dependent, make sure they match
-        String query = "SELECT id, name FROM " + TABLE_NAME + " WHERE category = " + category;
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.query(TABLE_NAME, new String[]{"id", "name"},
+                "category = ?",
+                new String[]{category.name()},
+                null, null, null, null );
+
 
         while (cursor.moveToNext()) {
             RecipeListItem listItem = new RecipeListItem()
@@ -49,8 +52,11 @@ public class SqliteRepository implements Repository {
     @Override
     public Recipe findRecipeById(int id) throws IllegalArgumentException {
         SQLiteDatabase db = sqlite.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id = " + id;
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.query(TABLE_NAME, null,
+                "id = ?",
+                new String[]{String.valueOf(id)},
+                null, null, null, null );
+
         Recipe recipe = cursor.moveToFirst() ? new Recipe()
                 .setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")))
                 .setCategory(Category.valueOf(cursor.getString(cursor.getColumnIndexOrThrow("category"))))
