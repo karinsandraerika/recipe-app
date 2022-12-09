@@ -15,9 +15,9 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder>{
 
     Context context;
-    ArrayList<Recipe> recipes;
+    ArrayList<RecipeListItem> recipes;
 
-    public RecipeAdapter(Context context, ArrayList<Recipe> recipes) {
+    public RecipeAdapter(Context context, ArrayList<RecipeListItem> recipes) {
         this.context = context;
         this.recipes = recipes;
     }
@@ -39,7 +39,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.ViewHolder holder, int position) {
-        Recipe recipe = recipes.get(position);
+        RecipeListItem recipe = recipes.get(position);
 
         holder.textName.setText(recipe.getName());
         //omvandlar till en string för säkerhets skull för nu
