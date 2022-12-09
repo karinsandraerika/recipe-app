@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 
 public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
@@ -20,15 +23,25 @@ public class RecipesListActivity extends AppCompatActivity {
         repo = SqliteRepository.getInstance(getApplicationContext());
         recyclerView = findViewById(R.id.rv_recipes);
 
-        //TODO hämta category från intent
         Intent intent = getIntent();
+        String categoryRaw = intent.getStringExtra("category");
+        Category category = Category.valueOf(categoryRaw.toUpperCase());
+
+        //TODO use this category to filter recipes
 
         Category cat = Category.valueOf(category.toUpperCase());
 
         adapter = new RecipeAdapter(this, repo.filterByCategory(cat));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        setContentView(R.layout.activity_recipes_list);
     }
 
-    //TODO navigering till recept
+    public void BtnClick (View view) {
+        Intent intent = new Intent(this, AddRecipeActivity.class);
+        intent.putExtra("category", view.getTag().toString());
+        startActivity(intent);
+
+
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.recipeapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,9 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder>{
 
     Context context;
-    ArrayList<RecipeListItem> recipes;
+    ArrayList<Recipe> recipes;
 
-    public RecipeAdapter(Context context, ArrayList<RecipeListItem> recipes) {
+    public RecipeAdapter(Context context, ArrayList<Recipe> recipes) {
         this.context = context;
         this.recipes = recipes;
     }
@@ -39,7 +38,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.ViewHolder holder, int position) {
-        RecipeListItem recipe = recipes.get(position);
+        Recipe recipe = recipes.get(position);
 
         holder.textName.setText(recipe.getName());
         //omvandlar till en string för säkerhets skull för nu

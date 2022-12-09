@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-// TODO Object creation is very fragile. If something changes in the Recipe class or the database, this breaks. Create a RecipeBuilder class to prevent this.
 
 public class SqliteRepository implements Repository {
     // TODO Make sure this is the right table name
@@ -28,18 +27,18 @@ public class SqliteRepository implements Repository {
     }
 
     @Override
-    public ArrayList<RecipeListItem> filterByCategory(Category category) {
+    public ArrayList<Recipe> filterByCategory(Category category) throws IllegalArgumentException {
         SQLiteDatabase db = sqlite.getReadableDatabase();
-        ArrayList<RecipeListItem> listItems = new ArrayList<>();
+        ArrayList<Recipe> listItems = new ArrayList<>();
         // TODO All column names are db dependent, make sure they match
         String query = "SELECT id, name FROM " + TABLE_NAME + " WHERE category = " + category;
         Cursor cursor = db.rawQuery(query, null);
 
-        while (cursor.moveToNext()){
-            RecipeListItem listItem = new RecipeListItem(
-                    cursor.getInt(0), // id
-                    cursor.getString(1) // name
-            );
+        while (cursor.moveToNext()) {
+            Recipe listItem = new Recipe()
+            .setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")))
+            .setName(cursor.getString(cursor.getColumnIndexOrThrow("name")))
+            .setCategory(Category.valueOf(cursor.getString(cursor.getColumnIndexOrThrow("category"))));
 
             listItems.add(listItem);
         }
@@ -49,18 +48,17 @@ public class SqliteRepository implements Repository {
     }
 
     @Override
-    public Recipe findRecipeById(int id) {
+    public Recipe findRecipeById(int id) throws IllegalArgumentException {
         SQLiteDatabase db = sqlite.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE id = " + id;
         Cursor cursor = db.rawQuery(query, null);
-        // TODO Indices are db dependent AND class dependent, make sure they match
-        Recipe recipe = cursor.moveToFirst() ? new Recipe(
-                cursor.getInt(0), // id
-                Category.valueOf(cursor.getString(1)), // category
-                cursor.getString(2), // name
-                cursor.getString(3), // ingredients
-                cursor.getString(4) // instructions
-                ) : null;
+        Recipe recipe = cursor.moveToFirst() ? new Recipe()
+                .setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")))
+                .setCategory(Category.valueOf(cursor.getString(cursor.getColumnIndexOrThrow("category"))))
+                .setName(cursor.getString(cursor.getColumnIndexOrThrow("name")))
+                .setIngredients(cursor.getString(cursor.getColumnIndexOrThrow("ingredients")))
+                .setInstructions(cursor.getString(cursor.getColumnIndexOrThrow("instructions")))
+                : null;
                 // possible null reference exception.
                 // Only happens if the RecipeListActivity does not reload the recipe list after deleting a recipe and the user tries to click the deleted recipe.
 
