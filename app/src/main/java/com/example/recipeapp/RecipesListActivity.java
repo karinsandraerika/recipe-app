@@ -16,8 +16,8 @@ public class RecipesListActivity extends AppCompatActivity {
     RecipeAdapter adapter;
     Category category;
 
-
-    protected void onCreate(Bundle savedInstanceState, AdapterView<Adapter> l) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_list);
 
@@ -25,21 +25,22 @@ public class RecipesListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_recipes);
 
         Intent intent = getIntent();
-        String category = intent.getStringExtra("category");
+        String categoryRaw = intent.getStringExtra("category");
+        Category category = Category.valueOf(categoryRaw.toUpperCase());
+
         //TODO use this category to filter recipes
 
         adapter = new RecipeAdapter(this, repo.filterByCategory(category));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setContentView(R.layout.activity_recipes_list);
+    }
+
+    public void BtnClick (View view) {
+        Intent intent = new Intent(this, AddRecipeActivity.class);
+        intent.putExtra("category", view.getTag().toString());
+        startActivity(intent);
 
 
-        l.setOnItemClickListener (new repo.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), ReadRecipeActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }

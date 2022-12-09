@@ -20,12 +20,12 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="20dp"
-            android:onClick="onBtnAddClick"
             android:layout_marginTop="20dp"
             android:background="@drawable/categories_background"
+            android:onClick="onBtnCategoryClick"
             android:text="@string/Category6"
-            android:textSize="16sp"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/btnCategory5"
             app:layout_constraintTop_toBottomOf="@+id/btnCategory4" />
 
@@ -35,10 +35,10 @@
             android:layout_height="150dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/categories_background"
+            android:onClick="onBtnCategoryClick"
             android:text="@string/Category5"
-            android:onClick="onBtnAddClick"
-            android:textSize="16sp"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnCategory3" />
 
@@ -49,10 +49,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/categories_background"
+            android:onClick="onBtnCategoryClick"
             android:text="@string/Category4"
-            android:onClick="onBtnAddClick"
-            android:textSize="16sp"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/btnCategory3"
             app:layout_constraintTop_toBottomOf="@+id/btnCategory2" />
 
@@ -61,11 +61,11 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="20dp"
-            android:onClick="onBtnAddClick"
             android:background="@drawable/categories_background"
+            android:onClick="onBtnCategoryClick"
             android:text="@string/Category3"
-            android:textSize="16sp"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnCategory1" />
 
@@ -74,11 +74,11 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="20dp"
-            android:onClick="onBtnAddClick"
             android:background="@drawable/categories_background"
+            android:onClick="onBtnCategoryClick"
             android:text="@string/Category1"
-            android:textSize="16sp"
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,12 +87,17 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="20dp"
-            android:onClick="onBtnAddClick"
             android:layout_marginTop="20dp"
             android:background="@drawable/categories_background"
+<<<<<<< HEAD
             android:text="@string/Christmas"
             android:textSize="16sp"
+=======
+            android:onClick="onBtnCategoryClick"
+            android:text="@string/Category2"
+>>>>>>> 7cd5c95fb264e76edc109d34663b18335c535e0d
             android:textColor="@color/black"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/btnCategory1"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
