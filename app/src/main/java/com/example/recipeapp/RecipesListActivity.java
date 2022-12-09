@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
@@ -28,18 +29,23 @@ public class RecipesListActivity extends AppCompatActivity {
         String categoryRaw = intent.getStringExtra("category");
         Category category = Category.valueOf(categoryRaw.toUpperCase());
 
-        //TODO use this category to filter recipes
+        // TODO use this category to filter recipes
 
-        adapter = new RecipeAdapter(this, repo.filterByCategory(category));
+        adapter = new RecipeAdapter(this, repo.filterByCategory(category), r -> {
+            Intent intentRead = new Intent(this, ReadRecipeActivity.class);
+            intentRead.putExtra("id", r.getId());
+            startActivity(intentRead);
+        });
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        setContentView(R.layout.activity_recipes_list);
+
     }
 
     public void BtnClick (View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
-        intent.putExtra("category", view.getTag().toString());
         startActivity(intent);
+
 
 
     }

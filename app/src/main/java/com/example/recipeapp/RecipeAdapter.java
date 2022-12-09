@@ -15,11 +15,19 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     Context context;
     ArrayList<Recipe> recipes;
+    RecipeAction action;
 
     public RecipeAdapter(Context context, ArrayList<Recipe> recipes) {
         this.context = context;
         this.recipes = recipes;
+        this.action = r -> {};
     }
+    public RecipeAdapter(Context context, ArrayList<Recipe> recipes, RecipeAction action) {
+        this(context, recipes);
+        this.action = action;
+    }
+
+    //
 
     @NonNull
     @Override
@@ -30,6 +38,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         ViewHolder holder = new ViewHolder(itemView);
 
+        itemView.setOnClickListener(view -> action.run(holder.getRecipe()));
+
         //TODO event listener, navigation till ReadRecipeActivity
         //TODO måste skicka med id i intentet, i bästa fall funkar intent.putExtra("id", Integer.parseInt(holder.itemView.getTag().toString()));
 
@@ -39,8 +49,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.ViewHolder holder, int position) {
         Recipe recipe = recipes.get(position);
-
-        holder.textName.setText(recipe.getName());
+        holder.bind(recipe);
         //omvandlar till en string för säkerhets skull för nu
         holder.itemView.setTag(String.valueOf(recipe.getId())); //för att kunna skicka med i intentet
     }
@@ -51,12 +60,31 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView textName;
+        private Recipe recipe;
+        private View view;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textName = itemView.findViewById(R.id.textView);
+            this.view = itemView;
         }
+
+        public Recipe getRecipe() {
+            return recipe;
+        }
+        public void bind(Recipe recipe){
+            this.recipe = recipe;
+
+            bindString(R.id.textView, recipe.getName());
+        }
+
+        private void bindString(int resId, String value){
+            TextView txt = itemView.findViewById(R.id.textView);
+
+        }
+    }
+
+    public interface RecipeAction {
+        void run(Recipe recipe);
     }
 }
