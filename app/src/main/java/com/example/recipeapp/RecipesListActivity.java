@@ -17,19 +17,9 @@ public class RecipesListActivity extends AppCompatActivity {
     RecipeAdapter adapter;
     Category category;
 
-
-    ListView l;
-    String tutorials[]
-            = { "....", ".....",
-            "....", "...",
-            "....", ".....",
-            "....", ".....",
-            "....." };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         setContentView(R.layout.activity_recipes_list);
 
         repo = SqliteRepository.getInstance(getApplicationContext());
@@ -41,17 +31,8 @@ public class RecipesListActivity extends AppCompatActivity {
         adapter = new RecipeAdapter(this, repo.filterByCategory(category));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-=======
-        setContentView(R.layout.activity_recipes_list_1);
+        setContentView(R.layout.activity_recipes_list);
 
-        l = findViewById(R.id.list);
-        ArrayAdapter<String> arr;
-        arr
-                = new ArrayAdapter<String>(
-                this,
-              androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                tutorials);
-        l.setAdapter(arr);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -59,8 +40,5 @@ public class RecipesListActivity extends AppCompatActivity {
                 startActivity(intent);
               }
         });
->>>>>>> 9cab45a28404b69e733f2e2ad35766068120e82f
     }
-
-    //TODO navigering till recept
 }
