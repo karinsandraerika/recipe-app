@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onBtnCategoryClick(View view) {
         Intent intent = new Intent(this, RecipesListActivity.class);
-        intent.putExtra("category", view.getTag().toString());
+        String category = view.getTag().toString();
+        intent.putExtra("category", category);
         startActivity(intent);
     }
 }
