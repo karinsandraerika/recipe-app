@@ -24,8 +24,9 @@ public class RecipesListActivity extends AppCompatActivity {
         repo = SqliteRepository.getInstance(getApplicationContext());
         recyclerView = findViewById(R.id.rv_recipes);
 
-        //TODO hämta category från intent
         Intent intent = getIntent();
+        String category = intent.getStringExtra("category");
+        //TODO use this category to filter recipes
 
         adapter = new RecipeAdapter(this, repo.filterByCategory(category));
         recyclerView.setAdapter(adapter);
