@@ -14,15 +14,15 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder>{
 
     Context context;
-    ArrayList<Recipe> recipes;
+    ArrayList<RecipeListItem> recipes;
     RecipeAction action;
 
-    public RecipeAdapter(Context context, ArrayList<Recipe> recipes) {
+    public RecipeAdapter(Context context, ArrayList<RecipeListItem> recipes) {
         this.context = context;
         this.recipes = recipes;
         this.action = r -> {};
     }
-    public RecipeAdapter(Context context, ArrayList<Recipe> recipes, RecipeAction action) {
+    public RecipeAdapter(Context context, ArrayList<RecipeListItem> recipes, RecipeAction action) {
         this(context, recipes);
         this.action = action;
     }
@@ -48,7 +48,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecipeAdapter.ViewHolder holder, int position) {
-        Recipe recipe = recipes.get(position);
+        RecipeListItem recipe = recipes.get(position);
         holder.bind(recipe);
         //omvandlar till en string för säkerhets skull för nu
         holder.itemView.setTag(String.valueOf(recipe.getId())); //för att kunna skicka med i intentet
@@ -60,7 +60,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private Recipe recipe;
+        private RecipeListItem recipe;
         private View view;
 
         public ViewHolder(@NonNull View itemView) {
@@ -69,10 +69,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
             this.view = itemView;
         }
 
-        public Recipe getRecipe() {
+        public RecipeListItem getRecipe() {
             return recipe;
         }
-        public void bind(Recipe recipe){
+        public void bind(RecipeListItem recipe){
             this.recipe = recipe;
 
             bindString(R.id.textView, recipe.getName());
@@ -85,6 +85,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     }
 
     public interface RecipeAction {
-        void run(Recipe recipe);
+        void run(RecipeListItem recipe);
     }
 }

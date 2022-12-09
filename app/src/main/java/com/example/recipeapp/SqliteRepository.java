@@ -27,18 +27,17 @@ public class SqliteRepository implements Repository {
     }
 
     @Override
-    public ArrayList<Recipe> filterByCategory(Category category) throws IllegalArgumentException {
+    public ArrayList<RecipeListItem> filterByCategory(Category category) throws IllegalArgumentException {
         SQLiteDatabase db = sqlite.getReadableDatabase();
-        ArrayList<Recipe> listItems = new ArrayList<>();
+        ArrayList<RecipeListItem> listItems = new ArrayList<>();
         // TODO All column names are db dependent, make sure they match
         String query = "SELECT id, name FROM " + TABLE_NAME + " WHERE category = " + category;
         Cursor cursor = db.rawQuery(query, null);
 
         while (cursor.moveToNext()) {
-            Recipe listItem = new Recipe()
+            RecipeListItem listItem = new RecipeListItem()
             .setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")))
-            .setName(cursor.getString(cursor.getColumnIndexOrThrow("name")))
-            .setCategory(Category.valueOf(cursor.getString(cursor.getColumnIndexOrThrow("category"))));
+            .setName(cursor.getString(cursor.getColumnIndexOrThrow("name")));
 
             listItems.add(listItem);
         }
