@@ -11,7 +11,6 @@ public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
     RecyclerView recyclerView;
     RecipeAdapter adapter;
-    Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,9 @@ public class RecipesListActivity extends AppCompatActivity {
         //TODO hämta category från intent
         Intent intent = getIntent();
 
-        adapter = new RecipeAdapter(this, repo.filterByCategory(category));
+        Category cat = Category.valueOf(category.toUpperCase());
+
+        adapter = new RecipeAdapter(this, repo.filterByCategory(cat));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
