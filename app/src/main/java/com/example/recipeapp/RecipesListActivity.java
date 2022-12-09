@@ -27,11 +27,7 @@ public class RecipesListActivity extends AppCompatActivity {
         String categoryRaw = intent.getStringExtra("category");
         Category category = Category.valueOf(categoryRaw.toUpperCase());
 
-        //TODO use this category to filter recipes
-
-        Category cat = Category.valueOf(category.toUpperCase());
-
-        adapter = new RecipeAdapter(this, repo.filterByCategory(cat));
+        adapter = new RecipeAdapter(this, repo.filterByCategory(category));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setContentView(R.layout.activity_recipes_list);
