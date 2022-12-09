@@ -22,13 +22,12 @@ public class StubRepo implements Repository{
 
 
     @Override
-    public ArrayList<RecipeListItem> filterByCategory(Category category) {
-        ArrayList<RecipeListItem> listItems = new ArrayList<>();
+    public ArrayList<Recipe> filterByCategory(Category category) {
+        ArrayList<Recipe> listItems = new ArrayList<>();
 
         for (Recipe r : recipes){
             if (r.getCategory() == category){
-                RecipeListItem listItem = new RecipeListItem(r.getId(), r.getName());
-                listItems.add(listItem);
+                listItems.add(r);
             }
         }
         return listItems;
