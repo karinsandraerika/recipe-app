@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
@@ -18,8 +16,8 @@ public class RecipesListActivity extends AppCompatActivity {
     RecipeAdapter adapter;
     Category category;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+    protected void onCreate(Bundle savedInstanceState, AdapterView<Adapter> l) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_list);
 
@@ -34,13 +32,13 @@ public class RecipesListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setContentView(R.layout.activity_recipes_list);
 
-        AdapterView<Adapter> l = null;
-        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        l.setOnItemClickListener (new repo.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), ReadRecipeActivity.class);
                 startActivity(intent);
-              }
+            }
         });
     }
 }
