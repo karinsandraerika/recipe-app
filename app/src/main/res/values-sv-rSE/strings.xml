@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RecipeApp</string>
-    <string name="Category1">Kategori 1</string>
-    <string name="Category2">Kategori 2</string>
-    <string name="Category3">Kategori 3</string>
-    <string name="Category4">Kategori 4</string>
-    <string name="Category5">Kategori 5</string>
-    <string name="Category6">Kategori 6</string>
+    <string name="Category1">Bakning</string>
+    <string name="Category2">Recipe för love </string>
+    <string name="Category3">"Recept för kaos "</string>
+    <string name="Category4">Jul</string>
+    <string name="Category5">Saffran</string>
+    <string name="Category6">Saffran fri</string>
     <string name="NameHintRecipe">Namn på recept</string>
     <string name="IngredientsHintRecipe">Ingredienser</string>
     <string name="InstructionsHintRecipe">Instruktioner</string>

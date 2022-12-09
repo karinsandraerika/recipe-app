@@ -7,15 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
     RecyclerView recyclerView;
     RecipeAdapter adapter;
-    Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +41,6 @@ public class RecipesListActivity extends AppCompatActivity {
     public void BtnClick (View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
         startActivity(intent);
-
-
 
     }
 }
