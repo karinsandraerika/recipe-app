@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">RecipeApp</string>
     <string name="Category1">Bakning</string>
-    <string name="Category2">Recipe for love </string>
+    <string name="Category2">Recipe för love </string>
     <string name="Category3">"Recept för kaos "</string>
     <string name="Category4">Jul</string>
     <string name="Category5">Saffran</string>
