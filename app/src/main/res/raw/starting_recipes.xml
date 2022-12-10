@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <recipes>
+        <recipe>
+            <category>CHRISTMAS</category>
+            <name>
+                Foo
+            </name>
+            <ingredients>
+                FOo
+                Bar
+                baZ
+            </ingredients>
+            <instructions>
+                fsfsdfsdfasfasfasfsaf
+                sadfsdfasfsdfsahfhsfsdghgdhj
+                hgjgfhkhjgfkhjglgjkhl
+                dssdfgtrshjtjfn
+                dvbgfhdfjdykdgjdjdghkdtyk
+                sbsfdhfhfdggdfgkmjnhbgedsaz
+            </instructions>
+        </recipe>
+    </recipes>
+</resources>

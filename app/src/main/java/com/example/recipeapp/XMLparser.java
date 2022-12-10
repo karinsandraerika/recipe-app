@@ -46,11 +46,13 @@ public class XMLparser {
     }
 
     public static class Entry {
+        public final String category;
         public final String name;
         public final String ingredients;
         public final String instructions;
 
-        private Entry(String name, String ingredients, String instructions) {
+        private Entry(String category, String name, String ingredients, String instructions) {
+            this.category = category;
             this.name = name;
             this.ingredients = ingredients;
             this.instructions = instructions;
@@ -62,6 +64,7 @@ public class XMLparser {
     // to their respective "read" methods for processing. Otherwise, skips the tag.
     private Entry readEntry(XmlPullParser parser) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, ns, "recipe");
+        String category = null;
         String name = null;
         String ingredients = null;
         String instructions = null;
@@ -73,6 +76,8 @@ public class XMLparser {
             String tagName = parser.getName();
 
             switch (tagName) {
+                case "category":
+                    category = readText(parser, tagName);
                 case "name":
                     name = readText(parser, tagName);
                     break;
@@ -87,7 +92,7 @@ public class XMLparser {
                     break;
             }
         }
-        return new Entry(name, ingredients, instructions);
+        return new Entry(category, name, ingredients, instructions);
     }
 
 
