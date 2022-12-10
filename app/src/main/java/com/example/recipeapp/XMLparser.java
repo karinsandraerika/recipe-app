@@ -1,6 +1,9 @@
 package com.example.recipeapp;
 
+import android.util.Log;
 import android.util.Xml;
+
+import androidx.annotation.NonNull;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -19,25 +22,27 @@ public class XMLparser {
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(in, null);
             parser.nextTag();
-            return readFeed(parser);
+            return readResources(parser);
         } finally {
             in.close();
         }
     }
 
-    private ArrayList<Entry> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
+
+
+    private ArrayList<Entry> readResources(XmlPullParser parser) throws XmlPullParserException, IOException {
         ArrayList<Entry> entries = new ArrayList<>();
 
-        parser.require(XmlPullParser.START_TAG, ns, "recipes");
+        parser.require(XmlPullParser.START_TAG, ns, "resources");
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
             }
-            String name = parser.getName();
+            String tagName = parser.getName();
 
             // Starts by looking for the recipe tag
-            if (name.equals("recipe")) {
-                entries.add(readEntry(parser));
+            if (tagName.equals("recipe")) {
+                entries.add(readRecipe(parser));
             } else {
                 skip(parser);
             }
@@ -58,11 +63,20 @@ public class XMLparser {
             this.instructions = instructions;
         }
 
+        @NonNull
+        @Override
+        public String toString(){
+            String[] fields = new String[] {category, name, ingredients, instructions};
+            return String.join(", ", fields);
+        }
+
     }
 
     // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off
     // to their respective "read" methods for processing. Otherwise, skips the tag.
-    private Entry readEntry(XmlPullParser parser) throws XmlPullParserException, IOException {
+    private Entry readRecipe(XmlPullParser parser) throws XmlPullParserException, IOException {
+        Log.d("XMLparser", "reading recipe");
+
         parser.require(XmlPullParser.START_TAG, ns, "recipe");
         String category = null;
         String name = null;
@@ -73,24 +87,21 @@ public class XMLparser {
                 continue;
             }
 
-            String tagName = parser.getName();
 
-            switch (tagName) {
-                case "category":
-                    category = readText(parser, tagName);
-                case "name":
-                    name = readText(parser, tagName);
-                    break;
-                case "ingredients":
-                    ingredients = readText(parser, tagName);
-                    break;
-                case "instructions":
-                    instructions = readText(parser, tagName);
-                    break;
-                default:
-                    skip(parser);
-                    break;
+            String tagName = parser.getName();
+            Log.d("XMLparser", "get tag: " + tagName);
+            if (tagName.equals("category")) {
+                category = readText(parser, tagName);
+            } else if (tagName.equals("name")) {
+                name = readText(parser, tagName);
+            } else if (tagName.equals("ingredients")) {
+                ingredients = readText(parser, tagName);
+            } else if (tagName.equals("instructions")) {
+                instructions = readText(parser, tagName);
+            } else {
+                skip(parser);
             }
+
         }
         return new Entry(category, name, ingredients, instructions);
     }

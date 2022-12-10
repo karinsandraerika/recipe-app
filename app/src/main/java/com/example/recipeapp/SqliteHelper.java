@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io. * ;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.d("SqliteHelper", "creating database");
         createRecipesTable(db);
         populateTable(db);
     }
@@ -65,13 +67,17 @@ public class SqliteHelper extends SQLiteOpenHelper {
                 XMLparser parser = new XMLparser();
                 ArrayList<XMLparser.Entry> entries = parser.parse(fileInputStream);
                 for (XMLparser.Entry entry : entries) {
+                    Log.d("SqliteHelper", "inserting: " + entry.toString());
                     String query = "INSERT INTO " + TABLE_NAME + "(category, name, ingredients, instructions) VALUES (?, ?, ?, ?)";
                     String[] args = new String[]{entry.category, entry.name, entry.ingredients, entry.instructions};
                     db.execSQL(query, args);
                 }
             }
-        } catch (XmlPullParserException | IOException ignored) {}
-
+        } catch (XmlPullParserException xmlPullParserException) {
+            Log.d("SqliteHelper", "xmlPullParserException: " + xmlPullParserException.getMessage());
+        } catch (IOException ioException){
+            Log.d("SqliteHelper", "ioException" + ioException.getMessage());
+        }
 
 
     }
