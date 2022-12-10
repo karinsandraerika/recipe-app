@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 
 public class SqliteRepository implements Repository {
-    // TODO Make sure this is the right table name
     private final String TABLE_NAME = "recipes";
     private final SQLiteOpenHelper sqlite;
 
@@ -22,7 +21,6 @@ public class SqliteRepository implements Repository {
         return instance;
     }
     private SqliteRepository(Context context){
-        // TODO make sure this class exists
         sqlite = SqliteHelper.getInstance(context);
     }
 
@@ -30,7 +28,6 @@ public class SqliteRepository implements Repository {
     public ArrayList<RecipeListItem> filterByCategory(Category category) throws IllegalArgumentException {
         SQLiteDatabase db = sqlite.getReadableDatabase();
         ArrayList<RecipeListItem> listItems = new ArrayList<>();
-        // TODO All column names are db dependent, make sure they match
         Cursor cursor = db.query(TABLE_NAME, new String[]{"id", "name"},
                 "category = ?",
                 new String[]{category.name()},

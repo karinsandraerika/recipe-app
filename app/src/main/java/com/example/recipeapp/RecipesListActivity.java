@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
     RecyclerView recyclerView;
@@ -25,16 +27,16 @@ public class RecipesListActivity extends AppCompatActivity {
         String categoryRaw = intent.getStringExtra("category");
         Category category = Category.valueOf(categoryRaw.toUpperCase());
 
-        // TODO use this category to filter recipes
-
-        adapter = new RecipeAdapter(this, repo.filterByCategory(category), r -> {
-            Intent intentRead = new Intent(this, ReadRecipeActivity.class);
-            intentRead.putExtra("id", r.getId());
-            startActivity(intentRead);
-        });
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ArrayList<RecipeListItem> itemList = repo.filterByCategory(category);
+        if (itemList.size() != 0){
+            adapter = new RecipeAdapter(this, itemList, r -> {
+                Intent intentRead = new Intent(this, ReadRecipeActivity.class);
+                intentRead.putExtra("id", r.getId());
+                startActivity(intentRead);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            });
+        }
 
     }
 
