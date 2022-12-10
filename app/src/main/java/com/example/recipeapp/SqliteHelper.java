@@ -4,7 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io. * ;
+import java.util.ArrayList;
 import androidx.annotation.Nullable;
+import org.xmlpull.v1.XmlPullParserException;
 
 public class SqliteHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "Recipes.db";
@@ -45,5 +48,22 @@ public class SqliteHelper extends SQLiteOpenHelper {
                         ")";
 
         db.execSQL(query);
+    }
+
+
+    /**
+     * Read contents of a CSV file and add rows to the database
+     * */
+    private void populateTable(SQLiteDatabase db, String filePath) throws IOException, XmlPullParserException {
+        // getFilesDir() usable to determine filePath?
+
+        InputStream fileInputStream = new FileInputStream(filePath);
+        XMLparser parser = new XMLparser();
+        ArrayList<XMLparser.Entry> entries = parser.parse(fileInputStream);
+        for (XMLparser.Entry entry: entries) {
+            String query = "INSERT INTO " + TABLE_NAME + "(name, ingredients, instructions) VALUES (?, ?, ?)";
+            String[] args = new String[] {entry.name, entry.ingredients, entry.instructions};
+            db.execSQL(query, args);
+        }
     }
 }
