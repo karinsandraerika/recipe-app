@@ -15,6 +15,7 @@
         <activity
             android:name=".AddRecipeActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".RecipesListActivity">
             <meta-data
                 android:name="android.app.lib_name"
