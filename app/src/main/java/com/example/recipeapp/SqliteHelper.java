@@ -1,15 +1,21 @@
 package com.example.recipeapp;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import java.io. * ;
+import java.util.ArrayList;
 import androidx.annotation.Nullable;
+import org.xmlpull.v1.XmlPullParserException;
 
 public class SqliteHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "Recipes.db";
     public static final int VERSION = 1;
     public static final String TABLE_NAME = "recipes";
+    private final Context context;
 
     private static SqliteHelper instance = null;
     public static SqliteHelper getInstance(Context context) {
@@ -21,11 +27,14 @@ public class SqliteHelper extends SQLiteOpenHelper {
 
     private SqliteHelper(@Nullable Context context) {
         super(context, DB_NAME, null, VERSION);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.d("SqliteHelper", "creating database");
         createRecipesTable(db);
+        populateTable(db);
     }
 
     @Override
@@ -45,5 +54,31 @@ public class SqliteHelper extends SQLiteOpenHelper {
                         ")";
 
         db.execSQL(query);
+    }
+
+
+    /**
+     * Read contents of a CSV file and add rows to the database
+     * */
+    private void populateTable(SQLiteDatabase db) {
+        try {
+            assert context != null;
+            try (InputStream fileInputStream = context.getResources().openRawResource(R.raw.starting_recipes)) {
+                XMLparser parser = new XMLparser();
+                ArrayList<XMLparser.Entry> entries = parser.parse(fileInputStream);
+                for (XMLparser.Entry entry : entries) {
+                    Log.d("SqliteHelper", "inserting: " + entry.toString());
+                    String query = "INSERT INTO " + TABLE_NAME + "(category, name, ingredients, instructions) VALUES (?, ?, ?, ?)";
+                    String[] args = new String[]{entry.category, entry.name, entry.ingredients, entry.instructions};
+                    db.execSQL(query, args);
+                }
+            }
+        } catch (XmlPullParserException xmlPullParserException) {
+            Log.d("SqliteHelper", "xmlPullParserException: " + xmlPullParserException.getMessage());
+        } catch (IOException ioException){
+            Log.d("SqliteHelper", "ioException" + ioException.getMessage());
+        }
+
+
     }
 }
