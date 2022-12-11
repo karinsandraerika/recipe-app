@@ -32,7 +32,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ReadRecipeActivity.class);
-            intent.putExtra("id", Integer.valueOf(holder.id));
+            intent.putExtra("id", holder.recipe.getId());
             context.startActivity(intent);
         });
 

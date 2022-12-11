@@ -1,7 +1,6 @@
 package com.example.recipeapp;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -34,7 +33,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.d("SqliteHelper", "creating database");
         createRecipesTable(db);
-        populateTable(db);
+        populateTableJSON(db);
     }
 
     @Override
@@ -60,7 +59,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     /**
      * Read contents of a CSV file and add rows to the database
      * */
-    private void populateTable(SQLiteDatabase db) {
+    private void populateTableXML(SQLiteDatabase db) {
         try {
             assert context != null;
             try (InputStream fileInputStream = context.getResources().openRawResource(R.raw.starting_recipes)) {
@@ -75,10 +74,26 @@ public class SqliteHelper extends SQLiteOpenHelper {
             }
         } catch (XmlPullParserException xmlPullParserException) {
             Log.d("SqliteHelper", "xmlPullParserException: " + xmlPullParserException.getMessage());
-        } catch (IOException ioException){
+        } catch (IOException ioException) {
             Log.d("SqliteHelper", "ioException" + ioException.getMessage());
         }
+    }
 
+    private void populateTableJSON(SQLiteDatabase db){
+        InputStream fileInputStream;
+        try {
+            assert context != null;
+            fileInputStream = context.getResources().openRawResource(R.raw.recipes);
+            JSONparser parser = new JSONparser();
+            ArrayList<Recipe> recipes = parser.parse(fileInputStream);
+            for (Recipe recipe : recipes) {
+                String query = "INSERT INTO " + TABLE_NAME + "(category, name, ingredients, instructions) VALUES (?, ?, ?, ?)";
+                String[] args = new String[]{recipe.getCategory().name(), recipe.getName(), recipe.getIngredients(), recipe.getInstructions()};
+                db.execSQL(query, args);
+            }
 
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

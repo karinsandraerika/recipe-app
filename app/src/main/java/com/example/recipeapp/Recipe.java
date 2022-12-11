@@ -22,6 +22,14 @@ public class Recipe {
         this.instructions = instructions;
     }
 
+    public Recipe(String category, String name, String ingredients, String instructions){
+        this.id = 0;
+        this.category = Category.valueOf(category);
+        this.name = name;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+    }
+
     public int getId() {
         return id;
     }
