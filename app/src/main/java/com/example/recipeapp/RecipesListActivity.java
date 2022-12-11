@@ -13,8 +13,7 @@ import java.util.ArrayList;
 public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
     RecyclerView recyclerView;
-    RecyclerView adapter;
-    public RecipeAdapter adapter;
+    RecipeAdapter adapter;
     String categoryRaw;
 
     @Override
@@ -29,17 +28,35 @@ public class RecipesListActivity extends AppCompatActivity {
         categoryRaw = intent.getStringExtra("category");
         Category category = Category.valueOf(categoryRaw.toUpperCase());
 
+        //we should set the itemList as attribute
+
         ArrayList<RecipeListItem> itemList = repo.filterByCategory(category);
         if (itemList.size() != 0){
-            adapter = new RecipeAdapter(this, itemList);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new RecipeAdapter(this, itemList, r -> {
+                Intent intentRead = new Intent(this, ReadRecipeActivity.class);
+                intentRead.putExtra("id", r.getId());
+                startActivity(intentRead);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            });
         }
+
     }
 
+
+    protected void onResume() {
+        super.onResume();
+
+        //we should use the information from intent to update the item list
+        adapter.notifyDataSetChanged();
+
+
+    }
     public void BtnClick (View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
         intent.putExtra("category", categoryRaw);
         startActivity(intent);
     }
 }
+
+
