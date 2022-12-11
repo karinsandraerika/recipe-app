@@ -14,6 +14,7 @@ public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
     RecyclerView recyclerView;
     RecipeAdapter adapter;
+    String categoryRaw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class RecipesListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_recipes);
 
         Intent intent = getIntent();
-        String categoryRaw = intent.getStringExtra("category");
+        categoryRaw = intent.getStringExtra("category");
         Category category = Category.valueOf(categoryRaw.toUpperCase());
 
         ArrayList<RecipeListItem> itemList = repo.filterByCategory(category);
@@ -42,7 +43,7 @@ public class RecipesListActivity extends AppCompatActivity {
 
     public void BtnClick (View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
+        intent.putExtra("category", categoryRaw);
         startActivity(intent);
-
     }
 }
