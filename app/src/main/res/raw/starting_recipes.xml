@@ -6,4 +6,18 @@
         <ingredients>FOo, Bar, baZ</ingredients>
         <instructions>Mix foo and bar\nAdd baz\nCook for 2 min\nServe</instructions>
     </recipe>
+    <recipe>
+        <category>CHRISTMAS</category>
+        <name>Multiline</name>
+        <ingredients>"FOo
+            Bar
+            baZ"
+
+        </ingredients>
+        <instructions>Mix foo and bar
+            Add baz
+            Cook for 2 min
+            Serve
+        </instructions>
+    </recipe>
 </resources>
