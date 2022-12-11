@@ -1,6 +1,4 @@
 package com.example.recipeapp;
-
-import android.util.Log;
 import android.util.Xml;
 
 import androidx.annotation.NonNull;
@@ -75,7 +73,6 @@ public class XMLparser {
     // Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off
     // to their respective "read" methods for processing. Otherwise, skips the tag.
     private Entry readRecipe(XmlPullParser parser) throws XmlPullParserException, IOException {
-        Log.d("XMLparser", "reading recipe");
 
         parser.require(XmlPullParser.START_TAG, ns, "recipe");
         String category = null;
@@ -89,7 +86,6 @@ public class XMLparser {
 
 
             String tagName = parser.getName();
-            Log.d("XMLparser", "get tag: " + tagName);
             if (tagName.equals("category")) {
                 category = readText(parser, tagName);
             } else if (tagName.equals("name")) {

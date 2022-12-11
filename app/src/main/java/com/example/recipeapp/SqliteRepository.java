@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -34,7 +33,6 @@ public class SqliteRepository implements Repository {
                 new String[]{category.name()},
                 null, null, null, null );
 
-        Log.d("FILTER", "filtering by category: " + category.name());
         while (cursor.moveToNext()) {
             RecipeListItem listItem = new RecipeListItem()
             .setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")))
