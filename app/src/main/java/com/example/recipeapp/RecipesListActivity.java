@@ -31,15 +31,10 @@ public class RecipesListActivity extends AppCompatActivity {
 
         ArrayList<RecipeListItem> itemList = repo.filterByCategory(category);
         if (itemList.size() != 0){
-            adapter = new RecipeAdapter(this, itemList, r -> {
-                Intent intentRead = new Intent(this, ReadRecipeActivity.class);
-                intentRead.putExtra("id", r.getId());
-                startActivity(intentRead);
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            });
+            adapter = new RecipeAdapter(this, itemList);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
-
     }
 
     public void BtnClick (View view) {
