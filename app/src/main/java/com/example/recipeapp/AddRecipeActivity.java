@@ -44,7 +44,7 @@ public class AddRecipeActivity extends AppCompatActivity {
     private String getCategoryFromIntent(){
         Intent intent = getIntent();
         strCategory = intent.getStringExtra("category");
-
+        //TODO hur få ut string resourcen istället?
         return strCategory;
     }
 

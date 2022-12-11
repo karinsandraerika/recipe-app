@@ -14,7 +14,6 @@ public class Recipe {
     }
 
     public Recipe(int id, Category category, String name, String ingredients, String instructions) {
-        //lägga till validering här eller i annan klass innan objekt skapas
         this.id = id;
         this.category = category;
         this.name = name;
