@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class RecipesListActivity extends AppCompatActivity {
     Repository repo;
     RecyclerView recyclerView;
-    RecipeAdapter adapter;
+    RecyclerView adapter;
+    public RecipeAdapter adapter;
     String categoryRaw;
 
     @Override
