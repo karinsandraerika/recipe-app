@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">RecipeApp</string>
     <string name="Category1">Bakning</string>
-    <string name="Category2">Recipe för love </string>
+    <string name="Category2">Recept  för kärlek</string>
     <string name="Category3">"Recept för kaos "</string>
     <string name="Category4">Jul</string>
     <string name="Category5">Saffran</string>
@@ -12,4 +11,7 @@
     <string name="InstructionsHintRecipe">Instruktioner</string>
     <string name="SaveButton">Spara</string>
     <string name="RecipeCategories">Recept kategorier</string>
+    <string name="NameRead">Titel</string>
+    <string name="IngredientsRead">Ingredienser</string>
+    <string name="InstructionsRead">Instruktiner</string>
 </resources>
