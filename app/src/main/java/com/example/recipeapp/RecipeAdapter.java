@@ -31,9 +31,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         View itemView = inflater.inflate(R.layout.recipe_list_row, parent, false);
 
         ViewHolder holder = new ViewHolder(itemView);
-        CardView cv = holder.cv;
 
-        cv.setOnClickListener(view -> {
+        itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, ReadRecipeActivity.class);
             intent.putExtra("id", holder.recipe.getId());
             context.startActivity(intent);
@@ -57,12 +56,10 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         private RecipeListItem recipe;
         private View view;
         public String id;
-        public CardView cv;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.view = itemView;
-            this.cv = itemView.findViewById(R.id.cardView);
         }
 
         public RecipeListItem getRecipe() {
