@@ -23,6 +23,8 @@ public class AddRecipeActivity extends AppCompatActivity {
         recipeRepo = SqliteRepository.getInstance(getApplicationContext());
         strCategory = getCategoryFromIntent();
         txtCategory.setText(strCategory);
+
+        //setTitle(getResources().getString(R.id.));
     }
 
     public void onBtnSaveClick(View view) {
@@ -34,14 +36,19 @@ public class AddRecipeActivity extends AppCompatActivity {
                 .setInstructions(getTextFromView(R.id.txtAddRecipeInstructions));
 
         if (recipeRepo.saveRecipe(recipe)) {
-            // Remove toast later, just for testing.
-            Toast.makeText(this, "success!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, RecipesListActivity.class);
+            intent.putExtra("category", strCategory);
+            startActivity(intent);
         }
+        else
+            Toast.makeText(this, "Kunde inte spara receptet", Toast.LENGTH_SHORT).show();
     }
 
     private String getCategoryFromIntent(){
         Intent intent = getIntent();
         strCategory = intent.getStringExtra("category");
+        //TODO få ut string resourcen istället?
+        String s = getResources().getString(R.string.Category3);
         return strCategory;
     }
 
