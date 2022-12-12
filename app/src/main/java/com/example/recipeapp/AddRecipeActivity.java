@@ -5,13 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-<<<<<<< Updated upstream
 import android.widget.TextView;
 import android.widget.Toast;
-=======
-
-import java.util.Properties;
->>>>>>> Stashed changes
 
 public class AddRecipeActivity extends AppCompatActivity {
 
@@ -47,7 +42,6 @@ public class AddRecipeActivity extends AppCompatActivity {
     private String getCategoryFromIntent(){
         Intent intent = getIntent();
         strCategory = intent.getStringExtra("category");
-
         return strCategory;
     }
 
@@ -55,16 +49,4 @@ public class AddRecipeActivity extends AppCompatActivity {
         TextView view = findViewById(resId);
         return view.getText().toString();
     }
-
-<<<<<<< Updated upstream
-
-    private void Navigation.AddRecipeActivity(){
-            Intent intent = new Intent(this, AddRecipeActivity.class);
-            new RecipesListActivity(intent);
-    }
 }
-
-=======
-}
-   
->>>>>>> Stashed changes
