@@ -27,27 +27,16 @@ public class RecipesListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         categoryRaw = intent.getStringExtra("category");
-        Category category = Category.valueOf(categoryRaw.toUpperCase()); //NullPointerException ibland
-
-        //we should set the itemList as attribute
+        Category category = Category.valueOf(categoryRaw.toUpperCase());
 
         ArrayList<RecipeListItem> itemList = repo.filterByCategory(category);
-        if (itemList.size() != 0){
+        if (itemList.size() != 0) {
             adapter = new RecipeAdapter(this, itemList);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
     }
 
-
-    protected void onResume() {
-        super.onResume();
-
-        //we should use the information from intent to update the item list
-        adapter.notifyDataSetChanged();
-
-
-    }
     public void BtnClick (View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
         intent.putExtra("category", categoryRaw);

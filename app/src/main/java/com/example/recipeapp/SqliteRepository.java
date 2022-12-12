@@ -14,6 +14,7 @@ public class SqliteRepository implements Repository {
     private final String TABLE_NAME = "recipes";
     private final SQLiteOpenHelper sqlite;
 
+
     private static SqliteRepository instance = null;
     public static SqliteRepository getInstance(Context context){
         if(instance == null)
@@ -21,6 +22,7 @@ public class SqliteRepository implements Repository {
 
         return instance;
     }
+
     private SqliteRepository(Context context){
         sqlite = SqliteHelper.getInstance(context);
     }
@@ -33,8 +35,7 @@ public class SqliteRepository implements Repository {
                 "category = ?",
                 new String[]{category.name()},
                 null, null, null, null );
-
-        Log.d("FILTER", "filtering by category: " + category.name());
+        
         while (cursor.moveToNext()) {
             RecipeListItem listItem = new RecipeListItem()
             .setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")))
@@ -62,8 +63,6 @@ public class SqliteRepository implements Repository {
                 .setIngredients(cursor.getString(cursor.getColumnIndexOrThrow("ingredients")))
                 .setInstructions(cursor.getString(cursor.getColumnIndexOrThrow("instructions")))
                 : null;
-                // possible null reference exception.
-                // Only happens if the RecipeListActivity does not reload the recipe list after deleting a recipe and the user tries to click the deleted recipe.
 
         cursor.close();
         return recipe;

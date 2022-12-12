@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -54,15 +52,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private RecipeListItem recipe;
-        private View view;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.view = itemView;
-        }
-
-        public RecipeListItem getRecipe() {
-            return recipe;
         }
 
         public void bind(RecipeListItem recipe){

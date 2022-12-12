@@ -9,16 +9,8 @@ public class Recipe {
 
     public Recipe(){
         id = 0;
-        category = Category.RECIPEFORDISASTER; //Vi behöver nog en "övrigt"-kategori, som default
+        category = Category.RECIPEFORDISASTER;
         name = ingredients = instructions = "";
-    }
-
-    public Recipe(int id, Category category, String name, String ingredients, String instructions) {
-        this.id = id;
-        this.category = category;
-        this.name = name;
-        this.ingredients = ingredients;
-        this.instructions = instructions;
     }
 
     public int getId() {

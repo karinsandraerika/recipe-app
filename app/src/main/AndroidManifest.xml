@@ -16,7 +16,7 @@
             android:name=".AddRecipeActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"
-            android:parentActivityName=".RecipesListActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -24,7 +24,7 @@
         <activity
             android:name=".ReadRecipeActivity"
             android:exported="false"
-            android:parentActivityName=".RecipesListActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
