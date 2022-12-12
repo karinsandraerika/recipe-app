@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
     public void onBtnClick(View view) {
         Intent intent = new Intent(this, RecipesListActivity.class);
         intent.putExtra("category", view.getTag().toString());

@@ -27,7 +27,7 @@ public class RecipesListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         categoryRaw = intent.getStringExtra("category");
-        Category category = Category.valueOf(categoryRaw.toUpperCase()); //NullPointerException ibland
+        Category category = Category.valueOf(categoryRaw.toUpperCase()); //NullPointerException vid bakåtnavigering
 
         //we should set the itemList as attribute
 
@@ -37,17 +37,28 @@ public class RecipesListActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
+
+        setTitle(getCategoryString(category));
+    }
+
+    private String getCategoryString(Category cat) {
+        String[] catArray = new String[7];
+        catArray[0] = "";
+        catArray[1] = getResources().getString(R.string.Category1);
+        catArray[2] = getResources().getString(R.string.Category2);
+        catArray[3] = getResources().getString(R.string.Category3);
+        catArray[4] = getResources().getString(R.string.Category4);
+        catArray[5] = getResources().getString(R.string.Category5);
+        catArray[6] = getResources().getString(R.string.Category6);
+
+        int catIndex = cat.getIndex();
+
+        return catArray[catIndex];
     }
 
 
-    protected void onResume() {
-        super.onResume();
-
-        //we should use the information from intent to update the item list
-        adapter.notifyDataSetChanged();
 
 
-    }
     public void BtnClick (View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
         intent.putExtra("category", categoryRaw);

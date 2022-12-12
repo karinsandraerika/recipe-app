@@ -10,8 +10,9 @@
     <string name="IngredientsHintRecipe">Ingredienser</string>
     <string name="InstructionsHintRecipe">Instruktioner</string>
     <string name="SaveButton">Spara</string>
-    <string name="RecipeCategories">Recept kategorier</string>
+    <string name="RecipeCategories">Receptkategorier</string>
     <string name="NameRead">Titel</string>
     <string name="IngredientsRead">Ingredienser</string>
     <string name="InstructionsRead">Instruktiner</string>
+    <string name="AddRecipe">Lägg till recept</string>
 </resources>

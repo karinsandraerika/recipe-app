@@ -12,19 +12,16 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     Repository recipeRepo;
     String strCategory;
-    TextView txtCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
-        txtCategory = findViewById(R.id.txtCategoryAdd);
         recipeRepo = SqliteRepository.getInstance(getApplicationContext());
         strCategory = getCategoryFromIntent();
-        txtCategory.setText(strCategory);
 
-        //setTitle(getResources().getString(R.id.));
+        setTitle(getResources().getString(R.string.AddRecipe));
     }
 
     public void onBtnSaveClick(View view) {

@@ -22,10 +22,11 @@ public class ReadRecipeActivity extends AppCompatActivity {
 
         recipe = repo.findRecipeById(id);
         initViewFromRecipe(recipe);
+
+        setTitle(recipe.getName());
     }
 
     private void initViewFromRecipe(Recipe recipe) {
-        setText(R.id.txtTitleRecipe, recipe.getName());
         setText(R.id.txtIngredientsRecipe, recipe.getIngredients());
         setText(R.id.txtInstructionsRecipe, recipe.getInstructions());
     }
