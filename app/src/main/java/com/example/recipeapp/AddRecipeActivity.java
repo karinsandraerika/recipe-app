@@ -25,6 +25,9 @@ public class AddRecipeActivity extends AppCompatActivity {
     }
 
     public void onBtnSaveClick(View view) {
+        if (!validateInput()) {
+            return;
+        }
         Recipe recipe = new Recipe()
                 .setId(0)
                 .setCategory(Category.valueOf(strCategory))
@@ -49,8 +52,16 @@ public class AddRecipeActivity extends AppCompatActivity {
         return strCategory;
     }
 
+    private boolean validateInput() {
+        if (getTextFromView(R.id.txtAddRecipeTitle).isEmpty() || getTextFromView(R.id.txtAddRecipeIngredients).isEmpty()) {
+            Toast.makeText(this, "You need to add a title and ingredients", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     private String getTextFromView(int resId) {
         TextView view = findViewById(resId);
-        return view.getText().toString();
+        return view.getText().toString().trim();
     }
 }
