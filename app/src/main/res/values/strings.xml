@@ -15,4 +15,6 @@
     <string name="IngredientsRead">Ingredients</string>
     <string name="InstructionsRead">Instructions</string>
     <string name="AddRecipe">Add Recipe</string>
+    <string name="IngredientsHeader">Ingredients</string>
+    <string name="InstructionsHeader">Instructions</string>
 </resources>
