@@ -17,4 +17,6 @@
     <string name="AddRecipe">Lägg till recept</string>
     <string name="IngredientsHeader">Ingredienser</string>
     <string name="InstructionsHeader">Instruktioner</string>
+    <string name="ToastAddFeedback">Du måste lägga till ett namn och ingredienser</string>
+    <string name="ToastSaveFeedback">Kunde inte spara receptet</string>
 </resources>

@@ -41,8 +41,7 @@ public class AddRecipeActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else
-            // TODO Add multilanguage
-            Toast.makeText(this, "Kunde inte spara receptet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, AddRecipeActivity.this.getResources().getString(R.string.ToastSaveFeedback), Toast.LENGTH_SHORT).show();
     }
 
     private String getCategoryFromIntent(){
@@ -54,7 +53,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     private boolean validateInput() {
         if (getTextFromView(R.id.txtAddRecipeTitle).isEmpty() || getTextFromView(R.id.txtAddRecipeIngredients).isEmpty()) {
-            Toast.makeText(this, "You need to add a title and ingredients", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, AddRecipeActivity.this.getResources().getString(R.string.ToastAddFeedback), Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

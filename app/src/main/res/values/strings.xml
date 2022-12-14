@@ -17,4 +17,6 @@
     <string name="AddRecipe">Add Recipe</string>
     <string name="IngredientsHeader">Ingredients</string>
     <string name="InstructionsHeader">Instructions</string>
+    <string name="ToastAddFeedback">You need to add a title and ingredients</string>
+    <string name="ToastSaveFeedback">Could not save recipe</string>
 </resources>
