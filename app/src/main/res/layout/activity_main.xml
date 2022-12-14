@@ -110,8 +110,8 @@
         android:layout_marginBottom="16dp"
         android:paddingStart="10dp"
         android:text="@string/RecipeCategories"
-        android:textColor="@color/black"
         android:textSize="24sp"
+        android:textColor="@color/green_light"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
