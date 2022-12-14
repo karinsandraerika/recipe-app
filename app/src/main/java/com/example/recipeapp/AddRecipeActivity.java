@@ -38,6 +38,7 @@ public class AddRecipeActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else
+            // TODO Add multilanguage
             Toast.makeText(this, "Kunde inte spara receptet", Toast.LENGTH_SHORT).show();
     }
 
