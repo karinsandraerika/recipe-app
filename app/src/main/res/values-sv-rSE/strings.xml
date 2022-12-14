@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Category1">Bakning</string>
-    <string name="Category2">Recept  för kärlek</string>
+    <string name="Category2">Recept för kärlek</string>
     <string name="Category3">"Recept för kaos "</string>
     <string name="Category4">Jul</string>
     <string name="Category5">Saffran</string>
-    <string name="Category6">Saffran fri</string>
+    <string name="Category6">Utan saffran</string>
     <string name="NameHintRecipe">Namn på recept</string>
     <string name="IngredientsHintRecipe">Ingredienser</string>
     <string name="InstructionsHintRecipe">Instruktioner</string>
@@ -13,7 +13,7 @@
     <string name="RecipeCategories">Receptkategorier</string>
     <string name="NameRead">Titel</string>
     <string name="IngredientsRead">Ingredienser</string>
-    <string name="InstructionsRead">Instruktiner</string>
+    <string name="InstructionsRead">Instruktioner</string>
     <string name="AddRecipe">Lägg till recept</string>
     <string name="IngredientsHeader">Ingredienser</string>
     <string name="InstructionsHeader">Instruktioner</string>
